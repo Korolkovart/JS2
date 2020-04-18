@@ -1,0 +1,122 @@
+body{
+    max-width: 1280px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 50px 0 50px;
+}
+.logo{
+    height: 30px;
+    width: 30px;
+}
+.logo-svg{
+    fill: rgb(150, 161, 163)
+}
+.header-main{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+    /* max-width: 1280px; */
+    height: 60px;
+    background-color: rgb(226, 230, 231);
+    box-sizing: border-box;
+    margin: 0 0 30px 0;
+    position: sticky;
+    top: 0;
+    /* position: fixed;  
+    top: 0px;
+    right: 0px;
+    left: 184px;
+    z-index: 100;   */
+
+}
+.price{
+    color: black;
+    font-size: 18px;
+    padding: 0 20px 0 0;
+}
+.cart-button{
+    outline: none;
+    background-color: #1890FF;
+    color: #FFFFFF;
+    width: 97px;
+    height: 35px;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.0015);
+    border-radius: 2px;
+    font-size: 16px;
+    line-height: 24px;
+    /* /* vertical-align: bottom; */
+}
+.cart-button:hover{
+    background-color: rgb(80, 151, 124);
+    color: #fff;
+}
+.cart-button:active{
+    background-color: #1890FF;
+    color: rgb(59, 25, 11);
+}
+.goods-list{
+    /* padding: 100px 0 0 0; */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+.goods-item{
+    width: 250px;
+    height: 300px;
+    padding: 0 0 10px 0;
+    margin: 0 0 30px 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    box-shadow: 4px 12px 2px rgba(0, 0, 0, 0.09);
+}
+.inf-goods{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.name-goods{
+    font-size: 30px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.price-goods{
+    padding: 10px 0 10px 0;
+    box-sizing: border-box;
+    font-size: 24px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+.goods-button{
+    outline: none;
+    background-color: #40905cc7;
+    color: #FFFFFF;
+    width: 78%;
+    height: 35px;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.0015);
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 24px;
+}
+.goods-button:hover{
+    background-color: rgb(210, 136, 2);
+}
+.goods-button:active{
+    background-color: #40905cc7;
+    color: rgb(59, 25, 11);
+    
+}

@@ -42,6 +42,8 @@
 // //Не много не понял второе задание - я бы убрал масив с объектом и передавл новые значения через функцию,
 // //новые значения передвал бы через вызов функции  
 
+// const addToCart = document.querySelector('goods-button');
+// addToCart.addEventListener("click");
 
 class GoodsItem {
   constructor(image, title, price,) {
@@ -49,12 +51,10 @@ class GoodsItem {
     this.title = title;
     this.price = price;
   }
-  calculatePrice() {
-    this.price += this.price;
+  setTotalPrice() {
+    let a = document.querySelector('total-price')
 
   }
-
-
   render() {
     return `<div class="goods-item">
     //                   <img class="img-goods" src="${this.image}" alt="photo-goods">
@@ -72,10 +72,10 @@ class GoodsList {
   }
   fetchGoods() {
     this.goods = [
-      {image: 'img/icon-cart.svg', title: 'Shirt', price: 150, },
-      {image: 'img/icon-cart.svg', title: 'Socks', price: 50, },
-      {image: 'img/icon-cart.svg',title: 'Jacket', price: 350, },
-      {image: 'img/icon-cart.svg', title: 'Shoes', price: 250, },
+      {id: 1, image: 'img/icon-cart.svg', title: 'Shirt', price: 150, },
+      {id: 2, image: 'img/icon-cart.svg', title: 'Socks', price: 50, },
+      {id: 3, image: 'img/icon-cart.svg',title: 'Jacket', price: 350, },
+      {id: 4, image: 'img/icon-cart.svg', title: 'Shoes', price: 250, },
     ];
   }
   render() {
@@ -90,5 +90,3 @@ class GoodsList {
 const list = new GoodsList();
 list.fetchGoods();
 list.render();
-
-console.log(GoodsItem.calculatePrice)

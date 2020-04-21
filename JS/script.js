@@ -51,42 +51,51 @@ class GoodsItem {
     this.title = title;
     this.price = price;
   }
-  setTotalPrice() {
-    let a = document.querySelector('total-price')
 
-  }
   render() {
     return `<div class="goods-item">
-    //                   <img class="img-goods" src="${this.image}" alt="photo-goods">
-    //                 <div class="inf-goods">
-    //                   <h3 class="name-goods">${this.title}</h3>
-    //                   <p class="price-goods">${this.price}</p>
-    //                   <button class="goods-button" type="button"> Добавить в корзину</button>
-    //                 </div>
-    //             </div>`;
+                       <img class="img-goods" src="${this.image}" alt="photo-goods">
+                     <div class="inf-goods">
+                       <h3 class="name-goods">${this.title}</h3>
+                       <p class="price-goods">${this.price}</p>
+                       <button class="goods-button" type="button"> Добавить в корзину</button>
+                     </div>
+                 </div>`;
   };
 }
+
 class GoodsList {
   constructor() {
     this.goods = [];
   }
   fetchGoods() {
     this.goods = [
-      {id: 1, image: 'img/icon-cart.svg', title: 'Shirt', price: 150, },
-      {id: 2, image: 'img/icon-cart.svg', title: 'Socks', price: 50, },
-      {id: 3, image: 'img/icon-cart.svg',title: 'Jacket', price: 350, },
-      {id: 4, image: 'img/icon-cart.svg', title: 'Shoes', price: 250, },
+      {image: 'img/icon-cart.svg', title: 'Shirt', price: 150, },
+      {image: 'img/icon-cart.svg', title: 'Socks', price: 50, },
+      {image: 'img/icon-cart.svg',title: 'Jacket', price: 350, },
+      {image: 'img/icon-cart.svg', title: 'Shoes', price: 250, }
     ];
   }
+  calculateTotalPrice(){
+    let totalSum = 0;
+    this.goods.forEach((good) => {
+      totalSum += this.price;
+    });
+    console.log(totalSum)
+  }
+
   render() {
     let listHtml = '';
     this.goods.forEach(good => {
       const goodItem = new GoodsItem(good.image, good.title, good.price,);
       listHtml += goodItem.render();
-    });
+    })
+
     document.querySelector('.goods-list').innerHTML = listHtml;
   }
 }
+
+
 const list = new GoodsList();
 list.fetchGoods();
 list.render();

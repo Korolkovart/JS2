@@ -73,17 +73,9 @@ class GoodsList {
       {image: 'img/icon-cart.svg', title: 'Shirt', price: 150, },
       {image: 'img/icon-cart.svg', title: 'Socks', price: 50, },
       {image: 'img/icon-cart.svg',title: 'Jacket', price: 350, },
-      {image: 'img/icon-cart.svg', title: 'Shoes', price: 250, }
+      {image: 'img/icon-cart.svg', title: 'Shoes', price: 250, },
     ];
   }
-  calculateTotalPrice(){
-    let totalSum = 0;
-    this.goods.forEach((good) => {
-      totalSum += this.price;
-    });
-    console.log(totalSum)
-  }
-
   render() {
     let listHtml = '';
     this.goods.forEach(good => {
@@ -93,9 +85,57 @@ class GoodsList {
 
     document.querySelector('.goods-list').innerHTML = listHtml;
   }
+  calculateTotalPrice(){
+    let totalSum = 0;
+    this.goods.forEach((good) => {
+        totalSum += good.price;
+    });
+    return totalSum
+  }
+  renderTotalPrice(){
+    let totalPriceCart = `Сумма:   ${this.calculateTotalPrice()}`;
+    document.querySelector('.total-price').innerHTML = totalPriceCart;
+  }
+  addToCart(){
+
+  }
+
 }
+//класс для корзины 
+
+class Cart{
+  constructor(){
+    this.goods = [];
+  }
+  addItemCart(){
+    //добавляем товары 
+  }
+  render(){
+    //отрисовка корзины  
+  }
+  delItemCart(){
+    //удаляем товары 
+  }
+  render(){
+    //отрисовка корзины  
+  }
+  getOrder(){
+    //сформировать заказ
+  }
+  render(){
+    //отрисковка формирования заказа
+  }
+
+  
+}
+
+
+
+
 
 
 const list = new GoodsList();
 list.fetchGoods();
 list.render();
+list.renderTotalPrice()
+

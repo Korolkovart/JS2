@@ -184,6 +184,7 @@ class Cart{
   getCart(){
       makeGETRequest(`${API_URL}/getBasket.json`, (goods) => {
       this.goods = JSON.parse(goods);
+      console.log(this.goods)
     })
   }
 

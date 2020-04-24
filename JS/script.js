@@ -141,7 +141,7 @@ class GoodsList {
 
     let listHtml = '';
     this.goods.forEach(good => {
-      const goodItem = new GoodsItem(good.product_name, good.price,);
+      const goodItem = new GoodsItem(good.product_name, good.price);
       listHtml += goodItem.render();
     })
     document.querySelector('.goods-list').innerHTML = listHtml;
@@ -149,9 +149,7 @@ class GoodsList {
   calculateTotalPrice(){
     let totalSum = 0;
     this.goods.forEach((good) => {
-      if (good.price !== undefined){
         totalSum += good.price;
-      }
     });
     return totalSum
   }
@@ -159,9 +157,8 @@ class GoodsList {
     let totalPriceCart = `Сумма:   ${this.calculateTotalPrice()}`;
     document.querySelector('.total-price').innerHTML = totalPriceCart;
   }
-
- 
 }
+
 class CartItem{
   constructor(product_name, price,) {
     // this.image = image;
@@ -170,7 +167,11 @@ class CartItem{
   }
 
   render() {
-    return `<p>kuku</p>`
+    return `<div class="basket-item">
+            <h2 class="title-basket-item">${this.product_name}</h2>
+            <span class="price-basket-item">${this.price}</span>
+            <button class="cart-button" type="button">Удалить</button>
+            </div>`;
   };
 }
 
@@ -181,28 +182,26 @@ class Cart{
     this.goods = [];
   }
   getCart(){
-      makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+      makeGETRequest(`${API_URL}/getBasket.json`, (goods) => {
       this.goods = JSON.parse(goods);
     })
   }
 
-  render(){
-      let listHtml = '';
+  renderCart(){
+      let cartHtml = '';
       this.goods.forEach(good => {
-      const cartItem = new CartItem(good.product_name, good.price,);
-      listHtml += cartItem.render();
+      const cartItem = new CartItem(good.product_name, good.price);
+      cartHtml += cartItem.render();
     })
-    document.querySelector('.basket .active-basket').innerHTML = listHtml;
+    document.querySelector('.basket').innerHTML = cartHtml;
   }
   
 
 
   
   moveCart(){
-
     let activeBasket = document.querySelector('.basket');
     activeBasket.classList.toggle('active-basket');
-    
   }
   renderElem(){
     let elem = document.querySelector('.cart-button')
@@ -234,20 +233,15 @@ class Cart{
 
 
 const list = new GoodsList();
-
-
-
 list.fetchGoods();
 
 setTimeout(() => { list.render()}, 1000);
 setTimeout(() => {list.renderTotalPrice()}, 1000);
 
-;
-
 
 const cart = new Cart();
 cart.getCart()
-setTimeout(() => {cart.render()}, 1000); 
+setTimeout(() => {cart.renderCart()}, 1000); 
 
 
 cart.renderElem()

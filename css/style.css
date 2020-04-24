@@ -138,7 +138,17 @@ main{
 .active-basket{
     visibility: visible;
 }
-.basket-list{
-    width: 100%;
-    background-color: #fff;
+.basket-item{
+    width: 94%;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid black;
+}
+.title-basket-item{
+
+}
+.price-basket-item{
+
 }

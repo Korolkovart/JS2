@@ -92,18 +92,21 @@ class GoodsList {
     this.goods = [];
   }
   fetchGoods() {
-      // const promis = new Promis ((resolve, reject) => {
+    // const readFile = () =>{
+    //   const promis = new Promis ((resolve, reject) => {
 
-      //   setTimeout(() => {
+    //     setTimeout(() => {
 
-      //     resolve(
-      //       makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
-      //       this.goods = JSON.parse(goods)
-      //       })
-      //     )
+    //       resolve(
+    //         makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+    //         this.goods = JSON.parse(goods)
+    //         })
+    //       )
 
-      //   }, 1);
-      // })
+    //     }, 1);
+    //   })
+    //   return promis
+    // }
         
 
      
@@ -117,31 +120,31 @@ class GoodsList {
   render() {
     
 
-    const promis1 = new Promis ((resolve1, reject) => {
+    // const promis1 = new Promis ((resolve1, reject) => {
 
-      setTimeout(() => {
+    //   setTimeout(() => {
 
-        resolve1(
-            let listHtml = '' ;
-            this.goods.forEach(good => {
-            const goodItem = new GoodsItem(good.product_name, good.price,);
-            listHtml += goodItem.render();
-            });
-            document.querySelector('.goods-list').innerHTML = listHtml;
-            )
+    //     resolve1(
+    //         let listHtml = '' ;
+    //         this.goods.forEach(good => {
+    //         const goodItem = new GoodsItem(good.product_name, good.price,);
+    //         listHtml += goodItem.render();
+    //         });
+    //         document.querySelector('.goods-list').innerHTML = listHtml;
+    //         )
         
-      }, 1000);
+    //   }, 1000);
   
-    });
+    // });
 
 
 
-    // let listHtml = '';
-    // this.goods.forEach(good => {
-    //   const goodItem = new GoodsItem(good.product_name, good.price,);
-    //   listHtml += goodItem.render();
-    // })
-    // document.querySelector('.goods-list').innerHTML = listHtml;
+    let listHtml = '';
+    this.goods.forEach(good => {
+      const goodItem = new GoodsItem(good.product_name, good.price,);
+      listHtml += goodItem.render();
+    })
+    document.querySelector('.goods-list').innerHTML = listHtml;
   }
   calculateTotalPrice(){
     let totalSum = 0;
@@ -159,11 +162,42 @@ class GoodsList {
 
  
 }
+class CartItem{
+  constructor(product_name, price,) {
+    // this.image = image;
+    this.product_name = product_name;
+    this.price = price;
+  }
+
+  render() {
+    return `<p>kuku</p>`
+  };
+}
+
+
 
 class Cart{
   constructor(){
     this.goods = [];
   }
+  getCart(){
+      makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+      this.goods = JSON.parse(goods);
+    })
+  }
+
+  render(){
+      let listHtml = '';
+      this.goods.forEach(good => {
+      const cartItem = new CartItem(good.product_name, good.price,);
+      listHtml += cartItem.render();
+    })
+    document.querySelector('.basket .active-basket').innerHTML = listHtml;
+  }
+  
+
+
+  
   moveCart(){
 
     let activeBasket = document.querySelector('.basket');
@@ -200,11 +234,25 @@ class Cart{
 
 
 const list = new GoodsList();
+
+
+
 list.fetchGoods();
 
-// setTimeout(() => { list.render()}, 1000);
-list.renderTotalPrice();
+setTimeout(() => { list.render()}, 1000);
+setTimeout(() => {list.renderTotalPrice()}, 1000);
+
+;
 
 
 const cart = new Cart();
+cart.getCart()
+setTimeout(() => {cart.render()}, 1000); 
+
+
 cart.renderElem()
+
+
+
+// const basket = new cartItem();
+// basket.render()

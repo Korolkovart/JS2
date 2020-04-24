@@ -138,3 +138,7 @@ main{
 .active-basket{
     visibility: visible;
 }
+.basket-list{
+    width: 100%;
+    background-color: #fff;
+}

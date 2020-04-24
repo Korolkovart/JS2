@@ -45,18 +45,41 @@
 // const addToCart = document.querySelector('goods-button');
 // addToCart.addEventListener("click");
 
+
+function makeGETRequest(url, callback) {
+  var xhr;
+
+  if (window.XMLHttpRequest) {
+    xhr = new XMLHttpRequest();
+  } else if (window.ActiveXObject) { 
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      callback(xhr.responseText);
+    }
+  }
+
+  xhr.open('GET', url, true);
+  xhr.send();
+}
+
+const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+
 class GoodsItem {
-  constructor(image, title, price,) {
-    this.image = image;
-    this.title = title;
+  constructor(product_name, price,) {
+    // this.image = image;
+    this.product_name = product_name;
     this.price = price;
   }
 
   render() {
     return `<div class="goods-item">
-                       <img class="img-goods" src="${this.image}" alt="photo-goods">
+                       <img class="img-goods" src="./img/icon-cart.svg" alt="photo-goods">
                      <div class="inf-goods">
-                       <h3 class="name-goods">${this.title}</h3>
+                       <h3 class="name-goods">${this.product_name}</h3>
                        <p class="price-goods">${this.price}</p>
                        <button class="goods-button" type="button"> Добавить в корзину</button>
                      </div>
@@ -69,26 +92,63 @@ class GoodsList {
     this.goods = [];
   }
   fetchGoods() {
-    this.goods = [
-      {image: 'img/icon-cart.svg', title: 'Shirt', price: 150, },
-      {image: 'img/icon-cart.svg', title: 'Socks', price: 50, },
-      {image: 'img/icon-cart.svg',title: 'Jacket', price: 350, },
-      {image: 'img/icon-cart.svg', title: 'Shoes', price: 250, },
-    ];
-  }
-  render() {
-    let listHtml = '';
-    this.goods.forEach(good => {
-      const goodItem = new GoodsItem(good.image, good.title, good.price,);
-      listHtml += goodItem.render();
-    })
+      // const promis = new Promis ((resolve, reject) => {
 
-    document.querySelector('.goods-list').innerHTML = listHtml;
+      //   setTimeout(() => {
+
+      //     resolve(
+      //       makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+      //       this.goods = JSON.parse(goods)
+      //       })
+      //     )
+
+      //   }, 1);
+      // })
+        
+
+     
+    makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+      this.goods = JSON.parse(goods);
+    })
+  }
+
+
+
+  render() {
+    
+
+    const promis1 = new Promis ((resolve1, reject) => {
+
+      setTimeout(() => {
+
+        resolve1(
+            let listHtml = '' ;
+            this.goods.forEach(good => {
+            const goodItem = new GoodsItem(good.product_name, good.price,);
+            listHtml += goodItem.render();
+            });
+            document.querySelector('.goods-list').innerHTML = listHtml;
+            )
+        
+      }, 1000);
+  
+    });
+
+
+
+    // let listHtml = '';
+    // this.goods.forEach(good => {
+    //   const goodItem = new GoodsItem(good.product_name, good.price,);
+    //   listHtml += goodItem.render();
+    // })
+    // document.querySelector('.goods-list').innerHTML = listHtml;
   }
   calculateTotalPrice(){
     let totalSum = 0;
     this.goods.forEach((good) => {
+      if (good.price !== undefined){
         totalSum += good.price;
+      }
     });
     return totalSum
   }
@@ -96,17 +156,26 @@ class GoodsList {
     let totalPriceCart = `Сумма:   ${this.calculateTotalPrice()}`;
     document.querySelector('.total-price').innerHTML = totalPriceCart;
   }
-  addToCart(){
 
-  }
-
+ 
 }
-//класс для корзины 
 
 class Cart{
   constructor(){
     this.goods = [];
   }
+  moveCart(){
+
+    let activeBasket = document.querySelector('.basket');
+    activeBasket.classList.toggle('active-basket');
+    
+  }
+  renderElem(){
+    let elem = document.querySelector('.cart-button')
+    elem.addEventListener("click", () => this.moveCart());
+    
+  }
+
   addItemCart(){
     //добавляем товары 
   }
@@ -130,12 +199,12 @@ class Cart{
 }
 
 
-
-
-
-
 const list = new GoodsList();
 list.fetchGoods();
-list.render();
-list.renderTotalPrice()
 
+// setTimeout(() => { list.render()}, 1000);
+list.renderTotalPrice();
+
+
+const cart = new Cart();
+cart.renderElem()

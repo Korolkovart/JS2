@@ -139,7 +139,7 @@ class CartItem{
 
   render() {
     return `<div class="basket-item">
-            <span>${this.id_product}</span>
+            <span>#${this.id_product}</span>
             <h2 class="title-basket-item">${this.product_name}</h2>
             <span class="price-basket-item">${this.price} ₽</span>
             <span class="quantity-basket-item">${this.quantity} шт</span>

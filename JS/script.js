@@ -153,7 +153,7 @@ class Cart{
   getCart(){
       makeGETRequest(`${API_URL}/getBasket.json`, (goods) => {
       this.goods.contents = JSON.parse(goods);
-      console.log(this.goods.contents)
+      console.log(this.goods.contents.contents)
     })
   }
 

@@ -130,10 +130,11 @@ class GoodsList {
 }
 
 class CartItem{
-  constructor(id_product, product_name, price,) {
+  constructor(id_product, product_name, price, quantity) {
     this.id_product = id_product;
     this.product_name = product_name;
     this.price = price;
+    this.quantity = quantity
   }
 
   render() {
@@ -141,6 +142,7 @@ class CartItem{
             <span>${this.id_product}</span>
             <h2 class="title-basket-item">${this.product_name}</h2>
             <span class="price-basket-item">${this.price} ₽</span>
+            <span class="quantity-basket-item">${this.quantity} шт</span>
             <button class="cart-button" type="button">Удалить</button>
             </div>`;
   };
@@ -152,15 +154,15 @@ class Cart{
   }
   getCart(){
       makeGETRequest(`${API_URL}/getBasket.json`, (goods) => {
-      this.goods.contents = JSON.parse(goods);
-      console.log(this.goods.contents.contents)
+      this.goods = JSON.parse(goods).contents;
+      console.log(this.goods.contents)
     })
   }
 
   renderCart(){
       let cartHtml = '';
       this.goods.forEach((good) => {
-      const cartItem = new CartItem(good.id_product, good.product_name, good.price);
+      const cartItem = new CartItem(good.id_product, good.product_name, good.price, good.quantity);
       cartHtml += cartItem.render();
     })
     document.querySelector('.basket').innerHTML = cartHtml;

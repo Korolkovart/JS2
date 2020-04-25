@@ -151,15 +151,15 @@ class Cart{
     this.goods = [];
   }
   getCart(){
-      makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
-      this.goods = JSON.parse(goods);
-      console.log(this.goods)
+      makeGETRequest(`${API_URL}/getBasket.json`, (goods) => {
+      this.goods.contents = JSON.parse(goods);
+      console.log(this.goods.contents)
     })
   }
 
   renderCart(){
       let cartHtml = '';
-      this.goods.forEach(good => {
+      this.goods.forEach((good) => {
       const cartItem = new CartItem(good.id_product, good.product_name, good.price);
       cartHtml += cartItem.render();
     })

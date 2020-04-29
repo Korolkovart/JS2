@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+    margin: 0 0;
+    padding:  0 0;
+}
+body{
+    width: 1280px;
+    margin: 0 auto;
+}
+main{
+    display: flex;
+
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 300px;
+}
+.txt-text{
+    padding: 10px 0 0 0;
+}
+.change{
+    display: flex;
+    flex-direction: column;
+}
+.txt-change{
+    height: 150px;
+    max-width: 150px;
+}

@@ -135,10 +135,13 @@ main{
     z-index: 99;
     top: 350px;
     margin: 0 auto;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
-.active-basket{
+/* .active-basket{
     visibility: visible;
+} */
+.isVisible{
+    visibility: hidden;
 }
 .basket-item{
     width: 94%;
@@ -148,9 +151,30 @@ main{
     justify-content: space-around;
     border: 1px solid black;
 }
-.title-basket-item{
-
+.search-form{
+    position: relative;
+    margin-right: 50px;
+    display: inline-block;
 }
-.price-basket-item{
-
+.search-field:focus{
+    outline: none;
+}
+.search-field {
+    box-sizing: border-box;
+    width: 250px;
+    color: black;
+    padding: 10px;
+    background-color: rgb(246, 246, 246);
+    border: none;
+    border-radius: 5px;
+}
+.btn-search {
+    background-color: transparent;
+    border: none;
+    color: rgb(121, 120, 120);
+    outline: none;
+    font-size: 1.1em;
+    position: absolute;
+    bottom: 12px;
+    right: 0;
 }

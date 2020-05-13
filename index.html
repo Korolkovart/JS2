@@ -35,16 +35,16 @@
     </header>
     <main>
       <div class="basket" :class="moveCart">
-        <div class="basket-item">
-          <h2 class="title-basket-item">Наименование</h2>
-          <span class="price-basket-item">Цена</span>
+        <div class="basket-item" v-for="product of filteredGoods" :key="product.id_product">
+          <h2 class="title-basket-item">{{product.product_name}}</h2>
+          <span class="price-basket-item">{{product.price.toLocaleString()}} ₽</span>
           <span class="quantity-basket-item"></span>
           <button class="cart-button" type="button" @click="">Удалить</button>
           </div>
       </div>
       <div class="goods-list">
         <template v-if="filteredGoods.length == 0">
-          <h3 class="goods-null">Упс, нет такого товара, попробуйте еще раз </h3>
+          <h3>Упс, нет такого товара, попробуйте еще раз </h3>
       </template>
         <div class="goods-item" v-for="product of filteredGoods" :key="product.id_product">
             <img class="img-goods" src="./img/icon-cart.svg" alt="photo-goods">

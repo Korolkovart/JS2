@@ -255,6 +255,7 @@ const app = new Vue({
     el: '#app',
     data: {
         catalogUrl: '/catalogData.json',
+        getProductUrl: '/getBasket.json',
         products: [],
         filteredGoods: [],
         searchLine: '',
@@ -287,7 +288,7 @@ const app = new Vue({
                    this.filteredGoods.push(el)
                }
            });
-        this.getJson(`getProducts.json`)
+        this.getJson(`${API + this.getProductUrl}`)
             .then(data => {
                 for(let el of data){
                     this.products.push(el);
@@ -304,3 +305,5 @@ const app = new Vue({
       }
   }
 })
+console.log(app.data)
+const cart = app;

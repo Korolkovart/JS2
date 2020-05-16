@@ -260,7 +260,6 @@ const app = new Vue({
         filteredGoods: [],
         searchLine: '',
         isVisible: false
-
     },
     methods: {
         getJson(url){
@@ -303,6 +302,35 @@ const app = new Vue({
               '': this.isVisible
           }
       }
-  }
+  },
 })
-console.log(app.data)
+
+Vue.component('search', {
+  props: [searchLine, filteredGoods, product],
+  template: `
+      <form action="#" class="search-form">
+      <input type="text" class="search-field" v-model="searchLine" placeholder="Введите наименование товара">
+      <button class="btn-search" type="submit" @click="FilterGoods">
+          <i class="fas fa-search"></i>
+      </button>
+      </form>
+          `
+
+}),
+Vue.component('basket', {
+  props: [product, isVisible],
+  template: `
+  <div class="basket" :class="moveCart">
+  <div class="basket-item" v-for="product of filteredGoods" :key="product.id_product">
+    <h2 class="title-basket-item">{{product.product_name}}</h2>
+    <span class="price-basket-item">{{product.price.toLocaleString()}} ₽</span>
+    <span class="quantity-basket-item"></span>
+    <button class="cart-button" type="button" @click="">Удалить</button>
+    </div>
+</div>
+  `
+})
+
+
+
+

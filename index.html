@@ -22,26 +22,30 @@
           </svg>
 
       </div>
-      <form action="#" class="search-form">
+      
+      <!-- <form action="#" class="search-form">
         <input type="text" class="search-field" v-model="searchLine" placeholder="Введите наименование товара">
         <button class="btn-search" type="submit" @click="FilterGoods">
             <i class="fas fa-search"></i>
         </button>
-      </form>
+      </form> -->
+      <search></search>
+
       <div class="price-button">
           <span class="total-price"> </span> 
       <button class="cart-button" type="button" @click="isVisible = !isVisible"> Корзина</button>    
       </div>
     </header>
     <main>
-      <div class="basket" :class="moveCart">
+      <basket></basket>
+      <!-- <div class="basket" :class="moveCart">
         <div class="basket-item" v-for="product of filteredGoods" :key="product.id_product">
           <h2 class="title-basket-item">{{product.product_name}}</h2>
           <span class="price-basket-item">{{product.price.toLocaleString()}} ₽</span>
           <span class="quantity-basket-item"></span>
           <button class="cart-button" type="button" @click="">Удалить</button>
           </div>
-      </div>
+      </div> -->
       <div class="goods-list">
         <template v-if="filteredGoods.length == 0">
           <h3>Упс, нет такого товара, попробуйте еще раз </h3>
